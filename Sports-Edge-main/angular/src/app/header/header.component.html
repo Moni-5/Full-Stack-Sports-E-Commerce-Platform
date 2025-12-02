@@ -1,0 +1,9 @@
+<nav class="navbar">
+    <div class="brand">Sports Shop</div>
+  
+    <div class="user-info" *ngIf="username">
+      <span>Welcome, {{ username }}</span>
+      <button (click)="logout()">Logout</button>
+    </div>
+  </nav>
+  

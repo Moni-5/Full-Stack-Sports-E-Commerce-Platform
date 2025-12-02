@@ -1,0 +1,21 @@
+<div class="home-content">
+  <h1 class="text-center">Sports</h1>
+
+  <!-- First Container: Displaying the first 4 items -->
+  <div class="container1">
+    <div class="card" *ngFor="let item of sports; let i = index">
+     <img [src]="'public/' + item.img"
+  class="card-img-top">
+      <div class="card-body">
+        <h3 class="card-title">{{ item.name }}</h3>
+        <a routerLink="/products">
+          <button (click)="add(i)" class="btn btn-primary">
+            <i class="bi bi-shop"></i> Open Products
+          </button>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<router-outlet></router-outlet>

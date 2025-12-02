@@ -1,0 +1,125 @@
+<div class="dashboard-container">
+  <div class="dashboard-header">
+    <div class="welcome-section">
+      <div class="user-avatar">
+        <i class="bi bi-person-circle"></i>
+      </div>
+      <div class="welcome-text">
+        <h1>Welcome back, {{ userInfo.username }}!</h1>
+        <p>Manage your account and profile settings</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="dashboard-content">
+    <div class="dashboard-grid">
+      <!-- Account Overview Card -->
+      <div class="dashboard-card">
+        <div class="card-header">
+          <i class="bi bi-person-badge"></i>
+          <h3>Account Overview</h3>
+        </div>
+        <div class="card-content">
+          <div class="info-item">
+            <span class="label">Username:</span>
+            <span class="value">{{ userInfo.username }}</span>
+          </div>
+          <div class="info-item">
+            <span class="label">Email:</span>
+            <span class="value">{{ userInfo.email }}</span>
+          </div>
+          <div class="info-item">
+            <span class="label">Role:</span>
+            <span class="value">{{ userInfo.role }}</span>
+          </div>
+          <div class="info-item">
+            <span class="label">User ID:</span>
+            <span class="value">{{ userInfo.userId }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Actions Card -->
+      <div class="dashboard-card">
+        <div class="card-header">
+          <i class="bi bi-gear"></i>
+          <h3>Quick Actions</h3>
+        </div>
+        <div class="card-content">
+          <div class="action-buttons">
+            <a routerLink="/profile/edit" class="action-btn">
+              <i class="bi bi-pencil-square"></i>
+              <span>Edit Profile</span>
+            </a>
+            <a routerLink="/profile/change-password" class="action-btn">
+              <i class="bi bi-shield-lock"></i>
+              <span>Change Password</span>
+            </a>
+            <a routerLink="/orders" class="action-btn">
+              <i class="bi bi-bag-check"></i>
+              <span>View Orders</span>
+            </a>
+            <a routerLink="/wishlist" class="action-btn">
+              <i class="bi bi-heart"></i>
+              <span>My Wishlist</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Account Security Card -->
+      <div class="dashboard-card">
+        <div class="card-header">
+          <i class="bi bi-shield-check"></i>
+          <h3>Account Security</h3>
+        </div>
+        <div class="card-content">
+          <div class="security-status">
+            <div class="status-item">
+              <i class="bi bi-check-circle-fill status-icon secure"></i>
+              <span>Password is secure</span>
+            </div>
+            <div class="status-item">
+              <i class="bi bi-check-circle-fill status-icon secure"></i>
+              <span>Account is active</span>
+            </div>
+            <div class="status-item">
+              <i class="bi bi-info-circle status-icon info"></i>
+              <span>Last login: Today</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent Activity Card -->
+      <div class="dashboard-card">
+        <div class="card-header">
+          <i class="bi bi-clock-history"></i>
+          <h3>Recent Activity</h3>
+        </div>
+        <div class="card-content">
+          <div class="activity-list">
+            <div class="activity-item">
+              <i class="bi bi-box-arrow-in-right"></i>
+              <span>Logged in successfully</span>
+              <small>Just now</small>
+            </div>
+            <div class="activity-item">
+              <i class="bi bi-person"></i>
+              <span>Profile accessed</span>
+              <small>Today</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Logout Section -->
+  <div class="logout-section">
+    <button (click)="logout()" class="logout-btn">
+      <i class="bi bi-box-arrow-right"></i>
+      Logout
+    </button>
+  </div>
+</div> 

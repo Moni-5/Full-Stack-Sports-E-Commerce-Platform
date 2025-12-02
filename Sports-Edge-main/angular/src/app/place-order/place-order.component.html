@@ -1,0 +1,188 @@
+<ng-template #noitem>
+  <!-- No Item Message -->
+  <div class="no-item-message no-items" *ngIf="!orderPlaced">
+    <h2>Oops! No item</h2>
+    <p>Start ordering now!</p>
+    <a routerLink="/cart">Go to Cart</a>
+  </div>
+
+  <!-- Order Placed Message -->
+  <div *ngIf="orderPlaced" class="no-item-message success">
+    <h2>Order Placed!</h2>
+    <p>Your order has been successfully placed. Thank you for ordering with us!</p>
+    <a routerLink="/cart">Order More</a>
+  </div>
+</ng-template>
+
+<div class="container" *ngIf="order_item; else noitem">
+  <div class="order-content">
+    <!-- Product Card -->
+    <div class="card product-card">
+       <img [src]="'public/' + order_item.img" class="card-img-top" alt="Product Image">
+      <div class="card-body">
+        <h5 class="card-title">{{ order_item.name }}</h5>
+        <div class="quantity-section">
+          <label for="quantity">Quantity:</label>
+          <input type="number" id="quantity" class="form-control" name="count" [(ngModel)]="count" min="1">
+        </div>
+        <div class="price-section">
+          <p class="delivery-fee">Delivery Fee: ₹100</p>
+          <p class="handling-fee" *ngIf="handlingFee > 0">Handling Fee: ₹{{ handlingFee }}</p>
+          <h4 class="total-price">
+            Total: ₹{{ calculateTotal() }}
+          </h4>
+        </div>
+      </div>
+    </div>
+
+    <!-- Delivery Details -->
+    <div class="card delivery-card">
+      <div class="card-body">
+        <h5 class="card-title"><i class="bi bi-truck"></i> Delivery Details</h5>
+        <form [formGroup]="orderForm">
+          <!-- Address Fields -->
+          <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" class="form-control" formControlName="fullName" placeholder="Enter your full name">
+          </div>
+          <div class="form-group">
+            <label>Mobile Number</label>
+            <input type="tel" class="form-control" formControlName="phone" placeholder="Enter your mobile number">
+          </div>
+          <div class="form-group">
+            <label>Street Address</label>
+            <input type="text" class="form-control" formControlName="street" placeholder="Enter street address">
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>City</label>
+                <input type="text" class="form-control" formControlName="city" placeholder="Enter city">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>PIN Code</label>
+                <input type="text" class="form-control" formControlName="pincode" placeholder="Enter PIN code">
+              </div>
+            </div>
+          </div>
+
+          <!-- Delivery Estimation -->
+          <div class="delivery-estimation">
+            <h6><i class="bi bi-clock"></i> Estimated Delivery</h6>
+            <p>Standard Delivery: 3-5 business days</p>
+            <p>Express Delivery: 1-2 business days</p>
+            <select class="form-control" formControlName="deliveryType">
+              <option value="standard">Standard Delivery (Free)</option>
+              <option value="express">Express Delivery (+₹50)</option>
+            </select>
+          </div>
+
+          <!-- Payment Method -->
+          <div class="payment-section">
+            <h6><i class="bi bi-credit-card"></i> Payment Method</h6>
+            <div class="payment-options">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" formControlName="paymentMethod" value="cod" id="cod">
+                <label class="form-check-label" for="cod">
+                  Cash on Delivery
+                  <span class="badge bg-warning text-dark">+₹50 handling fee</span>
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" formControlName="paymentMethod" value="card" id="card">
+                <label class="form-check-label" for="card">Credit/Debit Card</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" formControlName="paymentMethod" value="upi" id="upi">
+                <label class="form-check-label" for="upi">UPI</label>
+              </div>
+            </div>
+
+            <!-- Card Payment Fields -->
+            <div class="card-payment-fields" *ngIf="selectedPaymentMethod === 'card'">
+              <div class="form-group">
+                <label>Card Number</label>
+                <input type="text" class="form-control" formControlName="cardNumber" placeholder="1234 5678 9012 3456">
+                <small class="text-danger" *ngIf="getCardError('cardNumber')">{{ getCardError('cardNumber') }}</small>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Expiry Date</label>
+                    <input type="text" class="form-control" formControlName="cardExpiry" placeholder="MM/YY">
+                    <small class="text-danger" *ngIf="getCardError('cardExpiry')">{{ getCardError('cardExpiry') }}</small>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>CVV</label>
+                    <input type="password" class="form-control" formControlName="cardCVV" placeholder="123">
+                    <small class="text-danger" *ngIf="getCardError('cardCVV')">{{ getCardError('cardCVV') }}</small>
+                  </div>
+                </div>
+              </div>
+              <button class="btn btn-outline-primary mt-3" (click)="verifyPayment()">
+                <i class="bi bi-shield-check"></i> Verify Card Details
+              </button>
+              <div *ngIf="paymentVerified" class="alert alert-success mt-3">
+                <i class="bi bi-check-circle-fill"></i> Card details verified successfully!
+              </div>
+            </div>
+
+            <!-- UPI Payment Fields -->
+            <div class="upi-payment-fields" *ngIf="selectedPaymentMethod === 'upi'">
+              <div class="upi-providers">
+                <div class="upi-provider-option" 
+                     *ngFor="let provider of upiOptions"
+                     [class.selected]="selectedUPIProvider === provider.id"
+                     (click)="selectUPIProvider(provider.id)">
+                  <img [src]="provider.icon" [alt]="provider.name" class="provider-icon">
+                  <span class="provider-name">{{ provider.name }}</span>
+                </div>
+              </div>
+              
+              <div class="qr-code-section" *ngIf="showQRCode">
+                <div class="qr-code-container">
+                  <img [src]="getSelectedUPIOption()?.qrCode || 'assets/qr-codes/default-qr.svg'" 
+                       [alt]="getSelectedUPIOption()?.name + ' QR Code'" 
+                       class="qr-code">
+                  <p class="text-muted">Scan with {{ getSelectedUPIOption()?.name }} to pay</p>
+                </div>
+                <div class="upi-id-input">
+                  <p class="text-center">Or pay using UPI ID</p>
+                  <div class="form-group">
+                    <div class="input-group">
+                      <input type="text" 
+                             class="form-control" 
+                             formControlName="upiId" 
+                             placeholder="Enter UPI ID (e.g., username@upi)">
+                      <button class="btn btn-outline-primary" type="button" (click)="verifyPayment()">
+                        <i class="bi bi-shield-check"></i> Verify
+                      </button>
+                    </div>
+                    <small class="text-danger" *ngIf="getUPIError('upiId')">
+                      {{ getUPIError('upiId') }}
+                    </small>
+                  </div>
+                  <div *ngIf="paymentVerified" class="alert alert-success mt-3">
+                    <i class="bi bi-check-circle-fill"></i> UPI ID verified successfully!
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Place Order Button -->
+          <button class="btn btn-primary w-100 mt-4" 
+                  (click)="placeOrder()"
+                  [disabled]="selectedPaymentMethod !== 'cod' && !paymentVerified">
+            <i class="bi bi-bag-check"></i> Place Order
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+  

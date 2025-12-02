@@ -1,0 +1,22 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    background-color: #1e88e5;
+    color: white;
+    padding: 1rem 2rem;
+    align-items: center;
+  }
+  
+  .user-info span {
+    margin-right: 1rem;
+  }
+  
+  button {
+    background: white;
+    color: #1e88e5;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  

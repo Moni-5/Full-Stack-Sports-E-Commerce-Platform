@@ -1,0 +1,236 @@
+/* Global styles */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+/* Container for login form */
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  background: url('/assets/Background.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  filter: brightness(1.5);
+}
+
+.login-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 1;
+}
+
+.branding {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  display: flex;
+  align-items: center;
+  z-index: 2;
+  padding: 15px;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  backdrop-filter: blur(5px);
+}
+
+.logo {
+  width: 60px;
+  height: auto;
+  margin-right: 15px;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.brand-text {
+  color: white;
+  text-align: left;
+}
+
+.brand-text h1 {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.brand-text h1 .sports {
+  color: #ffffff;
+}
+
+.brand-text h1 .edge {
+  color: #4db6ac;
+  margin-left: 3px;
+}
+
+.brand-text .tagline {
+  margin: 5px 0 0;
+  font-size: 0.9rem;
+  opacity: 0.9;
+  font-style: italic;
+  color: #4db6ac;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.login-card {
+  position: relative;
+  z-index: 2;
+  max-width: 450px;
+  width: calc(100% - 40px);
+  margin: auto;
+  padding: 40px;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  box-sizing: border-box;
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.login-card h2 {
+  text-align: center;
+  color: #ffffff;
+  font-size: 28px;
+  margin-bottom: 30px;
+  font-weight: bold;
+}
+
+/* Form-group styles */
+.form-group {
+  margin-bottom: 20px;
+}
+
+/* Input styles */
+.form-control {
+  width: 100%;
+  padding: 14px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-sizing: border-box;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.form-control::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Focus and Error border color */
+.form-control:focus {
+  border-color: #00796b;
+  outline: none;
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Error state for input fields */
+.form-control.ng-invalid.ng-touched {
+  border-color: #ff4d4d; /* Red border for invalid input */
+}
+
+/* Error messages */
+.text-danger {
+  font-size: 12px;
+  color: #ff4d4d; /* Red color for errors */
+}
+
+.error-msg {
+  color: #ff4d4d;
+  font-size: 14px;
+  margin-top: 10px;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* Login Button styles */
+.btn-primary {
+  background-color: #00796b;
+  color: #fff;
+  border: none;
+  padding: 14px 20px;
+  width: 100%;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.btn-primary:hover {
+  background-color: #023f35;
+  transform: scale(1.02);
+}
+
+.btn-primary i {
+  font-size: 1.2rem;
+}
+
+/* Switch link */
+.text-center {
+  text-align: center;
+  margin-top: 20px;
+  color: #ffffff;
+}
+
+.text-center a {
+  color: #4db6ac;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.text-center a:hover {
+  text-decoration: underline;
+  color: #80cbc4;
+}
+
+.forgot-password-link {
+  color: #4db6ac;
+  font-size: 0.9rem;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.forgot-password-link:hover {
+  color: #80cbc4;
+  text-decoration: underline;
+}
+
+.text-end {
+  text-align: right;
+}
+
+@media (max-width: 480px) {
+  .login-card {
+    padding: 30px 20px;
+  }
+
+  .brand-text h1 {
+    font-size: 2rem;
+  }
+
+  .brand-text .tagline {
+    font-size: 1rem;
+  }
+}

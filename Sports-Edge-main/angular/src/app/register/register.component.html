@@ -1,0 +1,66 @@
+<div class="container">
+  <div class="register-container">
+    <div class="branding">
+      <img src="/assets/Logo.png" alt="SportEdge Logo" class="logo">
+      <div class="brand-text">
+        <h1><span class="sports">SPORTS</span><span class="edge">EDGE</span></h1>
+        <p class="tagline">Gear up for greatness</p>
+      </div>
+    </div>
+    <div class="register-card">
+      <h2>Register</h2>
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <input type="text" formControlName="username" placeholder="Full Name" class="form-control">
+          <small class="text-danger" *ngIf="submitted && f['username'].errors">
+            Full Name is required
+          </small>
+        </div>
+        <div class="form-group">
+          <input type="email" formControlName="email" placeholder="Email" class="form-control">
+          <small class="text-danger" *ngIf="submitted && f['email'].errors">
+            <span *ngIf="f['email'].errors['required']">Email is required</span>
+            <span *ngIf="f['email'].errors['email']">Please enter a valid email</span>
+          </small>
+        </div>
+        <div class="form-group">
+          <input type="password" formControlName="password" placeholder="Password" class="form-control" (input)="onPasswordInput()">
+          <small class="text-danger" *ngIf="submitted && f['password'].errors">
+            <span *ngIf="f['password'].errors['required']">Password is required</span>
+            <span *ngIf="f['password'].errors['minlength']">Password must be at least 8 characters</span>
+            <span *ngIf="f['password'].errors['complexity']">
+              Password must contain at least 8 characters, including one uppercase letter, one lowercase letter, one number, and one special character.
+            </span>
+          </small>
+          <ul class="password-conditions">
+            <li><span [ngClass]="passwordConditions.length ? 'tick' : 'cross'">{{ passwordConditions.length ? '✔️' : '❌' }}</span> At least 8 characters</li>
+            <li><span [ngClass]="passwordConditions.uppercase ? 'tick' : 'cross'">{{ passwordConditions.uppercase ? '✔️' : '❌' }}</span> At least one uppercase letter</li>
+            <li><span [ngClass]="passwordConditions.lowercase ? 'tick' : 'cross'">{{ passwordConditions.lowercase ? '✔️' : '❌' }}</span> At least one lowercase letter</li>
+            <li><span [ngClass]="passwordConditions.number ? 'tick' : 'cross'">{{ passwordConditions.number ? '✔️' : '❌' }}</span> At least one number</li>
+            <li><span [ngClass]="passwordConditions.special ? 'tick' : 'cross'">{{ passwordConditions.special ? '✔️' : '❌' }}</span> At least one special character</li>
+          </ul>
+        </div>
+        <div class="form-group">
+          <input type="password" formControlName="confirmPassword" placeholder="Confirm Password" class="form-control">
+          <small class="text-danger" *ngIf="submitted && f['confirmPassword'].errors">
+            <span *ngIf="f['confirmPassword'].errors['required']">Please confirm your password</span>
+          </small>
+          <small class="text-danger" *ngIf="submitted && registerForm.hasError('mismatch')">
+            Passwords do not match
+          </small>
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Register</button>
+        <p class="error-msg" *ngIf="registerError">{{ registerError }}</p>
+      </form>
+      
+      <div class="divider">
+        <span>or</span>
+      </div>
+      
+      <p class="text-center mt-3">
+        Already have an account?
+        <a routerLink="/login">Login</a>
+      </p>
+    </div>
+  </div>
+</div>

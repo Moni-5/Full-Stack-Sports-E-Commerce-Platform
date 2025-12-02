@@ -1,0 +1,35 @@
+<div class="wishlist-background">
+<ng-template #noItems>
+  <div class="no-item-message">
+    <div class="wishlist-empty-icon">
+      <i class="bi bi-heart" aria-hidden="true"></i>
+    </div>
+    <h2 class="text-center text-muted">Your Wishlist is Empty</h2>
+    <p class="text-center">Start adding items to your wishlist!</p>
+    <a routerLink="/home" class="btn-go-home">Browse Products</a>
+  </div>
+</ng-template>
+
+<div class="container" *ngIf="wishlistItems.length > 0; else noItems">
+  <h1 class="text-center">My Wishlist</h1>
+  <div class="wishlist-grid">
+    <div class="wishlist-item" *ngFor="let item of wishlistItems">
+      <div class="card">
+         <img [src]="'public/' + item.img" class="card-img-top" [alt]="item.name">
+        <div class="card-body">
+          <h3 class="card-title">{{ item.name }}</h3>
+          <h4 class="card-text">{{ item.price | currency:'INR' }}</h4>
+          <div class="button-group">
+            <button (click)="addToCart(item)" class="btn btn-primary">
+              <i class="bi bi-cart-plus"></i> Add to Cart
+            </button>
+            <button (click)="removeFromWishlist(item)" class="btn btn-outline-danger">
+              <i class="bi bi-heart-fill"></i> Remove
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div> 

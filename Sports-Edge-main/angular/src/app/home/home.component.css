@@ -1,0 +1,109 @@
+/* General Styles for the Page */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+  }
+  
+  h1.text-center {
+    margin: 2rem 0;
+    color: #dcdddd;
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  /* Container Style: Centering and Adding Margin */
+  .container1 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  /* Card Styles */
+  .card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  .card-img-top {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+  }
+  
+  .card-body {
+    padding: 1.5rem;
+  }
+  
+  .card-title {
+    color: #00796b;
+    margin-bottom: 1rem;
+    font-weight: bold;
+  }
+  
+  /* Button Styling */
+  .btn-primary {
+    background-color: #00796b;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    color: white;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+  }
+  
+  .btn-primary:hover {
+    background-color: #023f35;
+    transform: translateY(-2px);
+  }
+  
+  .btn-primary:active {
+    transform: translateY(0);
+  }
+  
+  .btn-primary i {
+    font-size: 1.1rem;
+  }
+  
+.home-content {
+    min-height: 100vh;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    background-color: #312f2f;
+    background: url('/assets/homebackground2.jpg') no-repeat center center fixed;
+    background-size: cover;
+    background-attachment: fixed;
+    position: relative;
+}
+
+
+  
+  .text-center {
+    text-align: center;
+    color: #fff;
+    font-size: 2.5rem;
+    margin: 2rem 0;
+    font-weight: bold;
+    text-shadow: 2px 2px 8px #00796b, 0 0 10px #000;
+    letter-spacing: 2px;
+  }

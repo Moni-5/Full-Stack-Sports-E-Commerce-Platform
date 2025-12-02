@@ -1,0 +1,404 @@
+/* Body Style */
+body {
+    font-family: 'Arial', sans-serif;
+    background: url('/assets/homebackground2.jpg') no-repeat center center fixed;
+    background-size: cover;
+    background-attachment: fixed;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+  
+  /* Centered Content for both No Items and Order */
+  .container {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .order-content {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 2rem;
+  }
+  
+ /* Shared Styles for No Item Message and Order Placed Message */
+.no-item-message {
+  text-align: center;
+  padding: 3rem;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* No Item Message */
+.no-item-message h2 {
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.no-item-message p {
+  color: #666;
+  margin-bottom: 1.5rem;
+}
+
+.no-item-message a {
+  display: inline-block;
+  padding: 0.75rem 2rem;
+  background-color: #00796b;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.no-item-message a:hover {
+  background-color: #00695c;
+  transform: translateY(-2px);
+}
+
+.no-items {
+  border-left: 4px solid #dc3545;
+}
+
+.success {
+  border-left: 4px solid #28a745;
+}
+
+/* Order Item Card */
+.card {
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  margin-bottom: 1rem;
+}
+
+.product-card {
+  position: sticky;
+  top: 2rem;
+}
+
+.product-card img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 12px 12px 0 0;
+}
+
+.card-body {
+  padding: 1.5rem;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.quantity-section {
+  margin-bottom: 1.5rem;
+}
+
+.quantity-section label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #666;
+}
+
+.price-section {
+  border-top: 1px solid #eee;
+  padding-top: 1rem;
+}
+
+.delivery-fee {
+  color: #666;
+  margin-bottom: 0.5rem;
+}
+
+.handling-fee {
+  color: #ff9800;
+  margin-bottom: 0.5rem;
+}
+
+.total-price {
+  color: #00796b;
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #666;
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: #00796b;
+  box-shadow: 0 0 0 2px rgba(0, 121, 107, 0.1);
+}
+
+.delivery-estimation {
+  background-color: #f8f9fa;
+  padding: 1rem;
+  border-radius: 8px;
+  margin: 1.5rem 0;
+}
+
+.delivery-estimation h6 {
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.delivery-estimation p {
+  color: #666;
+  margin: 0.5rem 0;
+}
+
+.payment-section {
+  margin-top: 2rem;
+}
+
+.payment-section h6 {
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.payment-options {
+  margin-bottom: 1.5rem;
+}
+
+.form-check {
+  margin-bottom: 1rem;
+}
+
+.form-check-label {
+  color: #333;
+  cursor: pointer;
+}
+
+.badge {
+  margin-left: 0.5rem;
+  font-weight: normal;
+}
+
+/* Card Payment Fields */
+.card-payment-fields, .upi-payment-fields {
+  background-color: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-top: 1rem;
+}
+
+.text-danger {
+  color: #dc3545;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+  display: block;
+}
+
+/* UPI Section */
+.qr-code-container {
+  text-align: center;
+  margin-top: 1.5rem;
+  padding: 1.5rem;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.qr-code {
+  max-width: 200px;
+  height: auto;
+  margin-bottom: 1rem;
+}
+
+.btn-outline-primary {
+  color: #00796b;
+  border-color: #00796b;
+}
+
+.btn-outline-primary:hover {
+  background-color: #00796b;
+  color: #fff;
+}
+
+.btn-primary {
+  background-color: #00796b;
+  border: none;
+  padding: 1rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #00695c;
+  transform: translateY(-2px);
+}
+
+.btn i {
+  margin-right: 0.5rem;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .order-content {
+    grid-template-columns: 1fr;
+  }
+
+  .product-card {
+    position: static;
+  }
+
+  .product-card img {
+    height: 200px;
+  }
+}
+
+.upi-payment-fields {
+  background-color: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-top: 1rem;
+}
+
+.upi-providers {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.upi-provider-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 120px;
+  background-color: white;
+}
+
+.upi-provider-option:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-color: #00796b;
+}
+
+.upi-provider-option.selected {
+  border-color: #00796b;
+  background-color: #e0f2f1;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.provider-icon {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  margin-bottom: 0.5rem;
+}
+
+.provider-name {
+  font-size: 0.9rem;
+  color: #333;
+  text-align: center;
+}
+
+.qr-code-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid #e0e0e0;
+}
+
+.qr-code-container {
+  text-align: center;
+  padding: 2rem;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-width: 300px;
+  width: 100%;
+}
+
+.qr-code {
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
+  margin-bottom: 1rem;
+}
+
+.upi-id-input {
+  width: 100%;
+  max-width: 500px;
+}
+
+.input-group {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.input-group .form-control {
+  border-radius: 8px;
+}
+
+.input-group .btn {
+  border-radius: 8px;
+  padding: 0.75rem 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .upi-providers {
+    gap: 0.5rem;
+  }
+
+  .upi-provider-option {
+    width: calc(50% - 0.5rem);
+    padding: 0.75rem;
+  }
+
+  .provider-icon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .provider-name {
+    font-size: 0.8rem;
+  }
+
+  .qr-code {
+    width: 150px;
+    height: 150px;
+  }
+}
+ 

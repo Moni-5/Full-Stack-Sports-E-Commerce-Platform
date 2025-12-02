@@ -1,0 +1,47 @@
+<nav class="navbar">
+  <div class="navbar-brand">
+    <img src="/assets/Logo.png" alt="SportEdge Logo" class="navbar-logo">
+    <div class="brand-text">
+      <h1><span class="sports">SPORTS</span><span class="edge">EDGE</span></h1>
+      <p class="tagline">Gear up for greatness</p>
+    </div>
+  </div>
+  <div class="nav-links">
+    <a routerLink="/home" routerLinkActive="active">
+      <i class="bi bi-house-fill"></i> Home
+    </a>
+    <a routerLink="/bestsellers" routerLinkActive="active">
+      <i class="bi bi-star-fill"></i> Bestsellers
+    </a>
+    <a routerLink="/wishlist" routerLinkActive="active">
+      <i class="bi bi-heart-fill"></i> Wishlist
+    </a>
+    <a routerLink="/cart" routerLinkActive="active">
+      <i class="bi bi-cart-fill"></i> Cart
+    </a>
+    <a routerLink="/orders" routerLinkActive="active">
+      <i class="bi bi-bag-check-fill"></i> Orders
+    </a>
+  </div>
+  <div class="nav-actions">
+    <!-- Show these buttons when user is logged in -->
+    <ng-container *ngIf="isLoggedIn">
+      <a routerLink="/dashboard" class="profile-btn">
+        <i class="bi bi-person-circle"></i> Profile
+      </a>
+      <a (click)="logout()" class="login-btn">
+        <i class="bi bi-box-arrow-right"></i> Logout
+      </a>
+    </ng-container>
+    
+    <!-- Show these buttons when user is not logged in -->
+    <ng-container *ngIf="!isLoggedIn">
+      <a (click)="goToLogin()" class="login-btn">
+        <i class="bi bi-box-arrow-in-right"></i> Login
+      </a>
+      <a (click)="goToRegister()" class="register-btn">
+        <i class="bi bi-person-plus"></i> Register
+      </a>
+    </ng-container>
+  </div>
+</nav> 

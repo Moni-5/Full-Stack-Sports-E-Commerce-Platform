@@ -1,0 +1,85 @@
+<div class="orders-background">
+<div class="container" *ngIf="orders.length!=0;else noorders">
+    <div class="item-card" *ngFor="let item of orders">
+      <div class="item-image">
+         <img [src]="'public/' + item.productImage" [alt]="item.productName">
+      </div>
+      <div class="item-details">
+        <h1 class="card-title">{{ item.productName }}</h1>
+        <h1 class="cost">{{ item.totalPrice | currency :'INR' }}</h1>
+        <h2>Quantity: {{item.quantity}}</h2>
+        <div class="order-status-box">
+          <div class="order-status-message">
+            <i class="bi bi-truck" style="font-size: 2rem; color: #4db6ac; margin-bottom: 8px;"></i>
+            <div class="order-status-text">Your Order will be delivered soon...</div>
+            <div class="order-thankyou-text">Thank You For Shopping With <span style="color:#ff4081;font-weight:bold;">SportsEdge</span> <span style="font-size:1.2em;">💖</span></div>
+          </div>
+          <div class="order-action-buttons">
+            <button class="buy-button" routerLink="/home"><i class="bi bi-bag-plus" style="margin-right:6px;"></i>Buy Again</button>
+            <button class="track-button" (click)="trackOrder(item)"><i class="bi bi-geo-alt" style="margin-right:6px;"></i>Track Order</button>
+            <button class="rate-button" (click)="rateProduct(item)"><i class="bi bi-star" style="margin-right:6px;"></i>Rate Product</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <ng-template #noorders>
+    <div class="no-item-message">
+      <div class="orders-empty-icon">
+        <i class="bi bi-box" aria-hidden="true"></i>
+      </div>
+      <h2 class="text-center text-muted">Oops! No Orders</h2>
+      <p class="text-center">Start ordering now!</p>
+      <a routerLink="/cart" class="btn-go-cart">Go to Cart</a>
+    </div>
+  </ng-template>
+</div>
+  
+<!-- Tracking Modal -->
+<div *ngIf="trackingModalOpen" class="tracking-modal-overlay">
+  <div class="tracking-modal">
+    <h2>Tracking for: {{ trackingProductName }}</h2>
+    <!-- Truck Animation Above -->
+    <div class="truck-track-container">
+      <div class="track-line"></div>
+      <img src="assets/truck.svg" class="truck-icon" [style.left.%]="truckShouldStop ? getTruckPosition() : truckPosition" alt="Truck" />
+    </div>
+    <!-- Original Stepper Below -->
+    <div class="tracking-timeline">
+      <div *ngFor="let step of trackingTimeline; let last = last" class="timeline-step">
+        <div class="timeline-icon">
+          <span *ngIf="step.done || step.current" class="checkmark">&#10003;</span>
+          <span *ngIf="!step.done && !step.current" class="circle"></span>
+        </div>
+        <div class="timeline-content">
+          <div [class.current-step]="step.current" [class.done-step]="step.done">{{ step.label }}</div>
+          <div class="timeline-date">{{ step.date }}</div>
+        </div>
+        <div *ngIf="!last" class="timeline-connector"></div>
+      </div>
+    </div>
+    <div class="tracking-info">
+      <div><strong>Tracking ID:</strong> {{ trackingId }}</div>
+    </div>
+    <button class="close-modal" (click)="closeTrackingModal()">Close</button>
+  </div>
+</div>
+  
+<!-- Rating Modal -->
+<div *ngIf="ratingModalOpen" class="tracking-modal-overlay">
+  <div class="tracking-modal">
+    <h2>Rate: {{ ratingProduct?.productName }}</h2>
+    <div class="star-rating" style="font-size: 2rem; margin-bottom: 1rem;">
+      <span *ngFor="let star of [1,2,3,4,5]" (click)="setRating(star)" [style.cursor]="'pointer'">
+        <span [style.color]="star <= ratingStars ? 'gold' : '#ccc'">&#9733;</span>
+      </span>
+    </div>
+    <textarea rows="4" style="width: 100%; margin-bottom: 1rem;" placeholder="Write your feedback..." [value]="ratingFeedback" (input)="handleFeedback($event)"></textarea>
+    <div style="display: flex; gap: 10px;">
+      <button (click)="submitRating()" [disabled]="ratingStars === 0">Submit</button>
+      <button (click)="closeRatingModal()">Close</button>
+    </div>
+  </div>
+</div>
+  
